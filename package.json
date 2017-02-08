@@ -10,6 +10,7 @@
     "classnames": "^2.2.5",
     "core-decorators": "^0.15.0",
     "meteor-node-stubs": "~0.2.0",
+    "rc-progress": "^2.0.6",
     "react": "^15.3.2",
     "react-addons-css-transition-group": "^15.4.2",
     "react-addons-pure-render-mixin": "^15.3.2",
