@@ -5,14 +5,14 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import Item from '../components/Item.js';
 
-import Items from '../../../api/items/items';
+import Appraisals from '../../../api/appraisals/appraisals';
 
 @autobind
 class Home extends Component {
-  addItems(event) {
+  addAppraisals(event) {
     event.preventDefault();
-    const item = this.refs.item.value.trim();
-    Meteor.call('insertNewItem', item, (err, res) => {
+    const appraisal = this.refs.item.value.trim();
+    Meteor.call('insertNewAppraisal', appraisal, (err, res) => {
         if(err) {
           console.log('error')
         }
@@ -31,13 +31,13 @@ class Home extends Component {
     return (
       <div style={{padding: '50px'}}>
 
-        <form  onSubmit={this.addItems}>
+        <form  onSubmit={this.addAppraisals}>
           <input type='text' ref='item' />
           <button type='submit'>Add Items</button>
         </form>
 
-          {this.props.items.map((item) => {
-            return <Item item={item} key={item._id}/>
+          {this.props.appraisals.map((appraisal) => {
+            return <Item appraisal={appraisal} key={appraisal._id}/>
           })}
 
       </div>
@@ -46,13 +46,13 @@ class Home extends Component {
 }
 
 export default createContainer(({params}) => {
-  let itemsSub = Meteor.subscribe('allItems');
+  let appraisalsSub = Meteor.subscribe('allAppraisals');
 
 
-  let itemsArray = Items.find({}).fetch();
+  let appraisalsArray = Appraisals.find({}).fetch();
 
   return {
-    ready: itemsSub.ready(),
-    items: itemsArray
+    ready: appraisalsSub.ready(),
+    appraisals: appraisalsArray
   }
 }, Home);

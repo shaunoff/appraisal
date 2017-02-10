@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Items from '../../../api/items/items';
+import Appraisals from '../../../api/appraisals/appraisals';
 
 export default class Item extends Component {
 
@@ -8,7 +8,7 @@ export default class Item extends Component {
     return (
       <div className='item'>
         <div >
-          <h3>{this.props.item.name}</h3>
+          <h3>{this.props.appraisal.name}</h3>
         </div>
       </div>
     )
