@@ -17,7 +17,6 @@ class App extends Component {
     }
     if (this.props.userReady) {
       const path = this.props.location.pathname
-
       return <div style={{display: 'flex', height: '100%',width: "calc(100% - 2px)"}}>
               <Sidebar path={path}/>
               <div style={{flex: '1', display: 'flex', flexDirection: 'column'}}>
@@ -34,8 +33,6 @@ class App extends Component {
 
 export default createContainer(({params}) => {
     let currentUserSub =  Meteor.subscribe('currentUser');
-
-
     return {
       userReady: currentUserSub.ready(),
 

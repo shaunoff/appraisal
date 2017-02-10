@@ -4,12 +4,15 @@ import {HOC} from 'formsy-react';
  class Rating extends React.Component {
   constructor(props){
     super(props);
+
     this.state ={
-      rating: 0
+      rating: this.props.value ? this.props.value : ''
     }
 
 
+
   }
+
   ratingChange(data){
     this.setState({rating: data})
     this.props.setValue(data)
@@ -44,6 +47,7 @@ import {HOC} from 'formsy-react';
           cursor: 'pointer'},
 
     }
+
     return (
       <div style={{display: 'flex'}}>
         <div onClick={this.ratingChange.bind(this,1)} style={this.state.rating >= 1 ? styles.scored: styles.normal}>

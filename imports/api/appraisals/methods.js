@@ -4,14 +4,23 @@ import SimpleSchema from 'simpl-schema';
 import Appraisals from "./appraisals"
 
 Meteor.methods({
-  insertNewAppraisal(appraisal) {
-    Appraisals.insert({
-      name: "testy",
-      user: this.userId,
-      commRating: appraisal.commRating,
-      commComment: appraisal.commComment,
-      coopRating: appraisal.coopRating,
-      coopComment: appraisal.coopComment
+  insertCompetencies(data) {
+    Meteor.users.upsert(Meteor.userId(),
+    {$set:{
+        competencies: data
+
+      }
+
+    });
+  },
+  insertQuestions(data) {
+    Meteor.users.upsert(Meteor.userId(),
+    {$set:{
+        questions: data
+
+
+      }
+    
     });
   }
 });
