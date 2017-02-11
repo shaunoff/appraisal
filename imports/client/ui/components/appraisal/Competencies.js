@@ -40,7 +40,7 @@ render(){
 
   return(
 
-    <div style={{display: 'flex', flexDirection: 'column',margin: '15px',flex: '3', display: 'flex',border: "2px solid #ccc", borderRadius: '8px',marginBottom: '22px', background: "white"}}>
+    <div style={{display: 'flex', flexDirection: 'column',margin: '15px',flex: '3', display: 'flex',border: "2px solid #ccc", borderRadius: '8px',background: "white"}}>
         <div style={{fontSize: "18px", fontWeight: '700', color: '#6bada7',padding:"10px"}}>
           Self-Assessment: Competencies
         </div>

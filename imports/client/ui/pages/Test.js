@@ -29,7 +29,7 @@ render(){
   return(
 <div>
 <div style={{display: 'flex',flexDirection: 'row'}}>
-<Progress />
+<Progress stage={this.state.stage}/>
 {this.state.stage == 1 ? <Competencies advance={this.advance.bind(this)}/> : this.state.stage ==  2 ? <Questions advance={this.advance.bind(this)}/> : <Summary/>}
 </div>
 
