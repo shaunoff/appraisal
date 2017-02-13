@@ -30,9 +30,10 @@ Meteor.startup(() => {
     <Router history={browserHistory}>
       <Route path="/" component={App} onEnter={requireAuth}>
         <IndexRoute component={Home} />
-          <Route path="/appraisal" component={Appraisal}/>
+          <Route path="/appraisal/:_id" component={Appraisal}/>
           <Route path="/new" component={New}/>
           <Route path="/test" component={Test}/>
+
       </Route>
       {/*<Route path="/" component={MainLayout} onEnter={requireAuth}>
         <IndexRoute component={App} />

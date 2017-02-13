@@ -2,15 +2,17 @@ import React from 'react';
 
 
 import Formsy from 'formsy-react';
-import Button from '../button/Button.js'
+import DummyRating from './DummyRating.js'
+import DummyComment from './DummyComment.js'
 import Rating from './Rating.js'
 import Comment from './Comment.js'
+import Button from '../button/Button.js'
 
-export default class Summary extends React.Component {
+export default class ManagerSummary extends React.Component {
 constructor(){
   super()
   this.state={
-    canSubmitFalse: 0
+    test: 0
   }
 }
 enableButton() {
@@ -24,23 +26,22 @@ disableButton() {
       });
     }
 handleSubmit(data){
-  Meteor.call('insertSummary', data, (err, res) => {
+  Meteor.call('insertManSummary', data, (err, res) => {
       if(err) {
         console.log('error')
       }
       if(!err) {
         console.log('Success')
-        this.props.advance()
+        
       }
     });
 }
 previous(){
-
   this.props.previous()
 }
 render(){
   const {summary = {}} = Meteor.user()
-  const {employee = {}} = summary
+  const {employee = {}, manager ={}} = summary
   return(
 
     <div style={{display: 'flex', flexDirection: 'column',margin: '15px',flex: '3', display: 'flex',border: "2px solid #ccc", borderRadius: '8px', background: "white"}}>
@@ -52,7 +53,15 @@ render(){
           <div style={{fontSize: "14px", fontWeight: '700', color: '#6bada7',padding:"10px"}}>
             Overall Rating:
           </div>
-          <Rating value={employee.summaryRating} size="40px" name="summaryRating" required/>
+          <div style={{display: 'flex'}}>
+            <div style={{display: 'flex',flex: '1'}}>
+                <DummyRating value={employee.summaryRating} size="40px" name="summaryRating"/>
+            </div>
+            <div style={{display: 'flex',flex: '1'}}>
+                <Rating value={manager.manSummaryRating} size="40px" name="manSummaryRating"/>
+            </div>
+          </div>
+
 
 
           </div>
@@ -61,21 +70,36 @@ render(){
         <div style={{fontSize: "14px", fontWeight: '700', color: '#6bada7',padding:"10px"}}>
           Overall Summary: <span style={{color: "#ccc"}}>How well have you performed over the last year?</span>
         </div>
+        <div style={{display: 'flex'}}>
+          <div style={{display: 'flex',flex: '1'}}>
+              <DummyComment value={employee.overall} rows={8} name="overall"/>
+          </div>
+          <div style={{display: 'flex',flex: '1'}}>
+              <Comment value={manager.manOverall} rows={8} name="manOverall"/>
+          </div>
+        </div>
 
-        <Comment value={employee.overall} rows={8} name="overall" required/>
       </div>
       <div style={{display: 'flex', flexDirection: "column"}}>
       <div style={{fontSize: "14px", fontWeight: '700', color: '#6bada7',padding:"10px"}}>
         Other Points: <span style={{color: "#ccc"}}>Any other points you would like to discuss at you appraisal</span>
       </div>
+      <div style={{display: 'flex'}}>
+        <div style={{display: 'flex',flex: '1'}}>
+            <DummyComment value={employee.otherComments} rows={8} name="otherComments"/>
+        </div>
+        <div style={{display: 'flex',flex: '1'}}>
+          <Comment value={manager.manOtherComments} rows={8} name="manOtherComments"/>
+        </div>
+      </div>
 
-      <Comment value={employee.otherComments} rows={8} name="otherComments"/>
     </div>
     <div style={{display: 'flex',margin: '10px'}}>
     <Button type="button" click={this.previous.bind(this)}>Previous</Button>
     <div style={{flex: '1'}}></div>
     <Button type="submit" disabled={!this.state.canSubmit}>Submit</Button>
     </div>
+
 
     </Formsy.Form>
 

@@ -3,17 +3,18 @@ import React from 'react';
 
 import Formsy from 'formsy-react';
 
-import Rating from './Rating.js'
+import DummyComment from './DummyComment.js'
 import Comment from './Comment.js'
 import Button from '../button/Button.js'
 
 
-export default class Questions extends React.Component {
+export default class ManagerQuestions extends React.Component {
 constructor(){
   super()
   this.state={
     test: 0
   }
+  this.handleClick = this.handleClick.bind(this)
 }
 enableButton() {
       this.setState({
@@ -26,7 +27,9 @@ disableButton() {
       });
     }
 handleSubmit(data){
-  Meteor.call('insertQuestions', data, (err, res) => {
+  console.log(data)
+  this.props.advance()
+  Meteor.call('insertManQuestions', data, (err, res) => {
       if(err) {
         console.log('error')
       }
@@ -36,13 +39,17 @@ handleSubmit(data){
       }
     });
 }
+handleClick(){
+  this.props.advance()
+}
 previous(){
 
   this.props.previous()
 }
 render(){
     const {questions = {}} = Meteor.user()
-    const {employee = {}} = questions
+    const {employee = {}, manager ={}} = questions
+    const {managerAccess} = this.props
   return(
 
     <div style={{display: 'flex', flexDirection: 'column',margin: '15px',flex: '3', display: 'flex',border: "2px solid #ccc", borderRadius: '8px', background: "white"}}>
@@ -56,35 +63,72 @@ render(){
         <div style={{fontSize: "14px", fontWeight: '700', color: '#6bada7',padding:"10px"}}>
           1. What are your principle strengths
         </div>
+        <div style={{display: 'flex'}}>
+          <div style={{display: 'flex',flex: '1'}}>
+            <DummyComment value={employee.q1comment} rows={4} name="q1comment"/>
+          </div>
+          <div style={{display: 'flex',flex: '1'}}>
+              {React.createElement(managerAccess ? Comment : DummyComment,{name: "manQ1comment", value: manager.manQ1comment, rows: 4, validations:"isExisty", required: true})}
 
-        <Comment value={employee.q1comment} rows={4} name="q1comment"/>
+          </div>
+        </div>
       </div>
       <div style={{display: 'flex', flexDirection: "column"}}>
       <div style={{fontSize: "14px", fontWeight: '700', color: '#6bada7',padding:"10px"}}>
         2. What have been your most important accomplishments this year?
       </div>
+      <div style={{display: 'flex'}}>
+        <div style={{display: 'flex',flex: '1'}}>
+          <DummyComment value={employee.q2comment} rows={4} name="q2comment"/>
+        </div>
+        <div style={{display: 'flex',flex: '1'}}>
+          {React.createElement(managerAccess ? Comment : DummyComment,{name: "manQ2comment", value: manager.manQ2comment, rows: 4, validations:"isExisty", required: true})}
 
-      <Comment value={employee.q2comment} rows={4} name="q2comment"/>
+        </div>
+      </div>
+
     </div>
     <div style={{display: 'flex', flexDirection: "column"}}>
     <div style={{fontSize: "14px", fontWeight: '700', color: '#6bada7',padding:"10px"}}>
       3. How well did you accomplish last year's goals?
     </div>
+    <div style={{display: 'flex'}}>
+      <div style={{display: 'flex',flex: '1'}}>
+        <DummyComment value={employee.q3comment} rows={4} name="q3comment"/>
+      </div>
+      <div style={{display: 'flex',flex: '1'}}>
+        {React.createElement(managerAccess ? Comment : DummyComment,{name: "manQ3comment", value: manager.manQ3comment, rows: 4, validations:"isExisty", required: true})}
 
-    <Comment value={employee.q3comment} rows={4} name="q3comment"/>
+      </div>
+    </div>
+
+
   </div>
     <div style={{display: 'flex', flexDirection: "column"}}>
     <div style={{fontSize: "14px", fontWeight: '700', color: '#6bada7',padding:"10px"}}>
       4. What do you think are the areas in which you need to improve and what training is needed to achieve these imrovements??
     </div>
+    <div style={{display: 'flex'}}>
+      <div style={{display: 'flex',flex: '1'}}>
+        <DummyComment value={employee.q4comment} rows={4} name="q4comment"/>
+      </div>
+      <div style={{display: 'flex',flex: '1'}}>
+        {React.createElement(managerAccess ? Comment : DummyComment,{name: "manQ4comment", value: manager.manQ4comment, rows: 4, validations:"isExisty", required: true})}
 
-      <Comment value={employee.q4comment} rows={4} name="q4comment"/>
+      </div>
+    </div>
+
 
     </div>
     <div style={{display: 'flex',margin: '10px'}}>
     <Button type="button" click={this.previous.bind(this)}>Previous</Button>
     <div style={{flex: '1'}}></div>
+    {managerAccess ?
     <Button type="submit" disabled={!this.state.canSubmit}>Submit</Button>
+    :
+    <Button type="button" click={this.handleClick}>Next</Button>
+    }
+
     </div>
 
     </Formsy.Form>

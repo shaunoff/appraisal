@@ -9,7 +9,8 @@ Meteor.publish('currentUser', function() {
       'services.google.given_name': 1,
       'services.google.family_name': 1,
       'competencies': 1,
-      'questions': 1
+      'questions': 1,
+      'summary': 1
       }
     });
 });

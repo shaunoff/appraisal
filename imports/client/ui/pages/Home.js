@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { autobind } from 'core-decorators';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { Link } from 'react-router';
 
 import Item from '../components/Item.js';
 
@@ -31,6 +31,7 @@ class Home extends Component {
     return (
       <div style={{padding: '50px'}}>
 
+          <Link style={{ fontSize: "16px",textDecoration: 'none',color: "#585858 " }} to={`appraisal/${Meteor.userId()}`}>Targets</Link>
         <form  onSubmit={this.addAppraisals}>
           <input type='text' ref='item' />
           <button type='submit'>Add Items</button>

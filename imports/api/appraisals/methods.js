@@ -7,7 +7,16 @@ Meteor.methods({
   insertCompetencies(data) {
     Meteor.users.upsert(Meteor.userId(),
     {$set:{
-        competencies: data
+        'competencies.employee': data
+
+      }
+
+    });
+  },
+  insertManCompetencies(data) {
+    Meteor.users.upsert(Meteor.userId(),
+    {$set:{
+        'competencies.manager': data
 
       }
 
@@ -16,11 +25,43 @@ Meteor.methods({
   insertQuestions(data) {
     Meteor.users.upsert(Meteor.userId(),
     {$set:{
-        questions: data
+        'questions.employee': data
 
 
       }
-    
+
+    });
+  },
+  insertManQuestions(data) {
+    Meteor.users.upsert(Meteor.userId(),
+    {$set:{
+        'questions.manager': data
+
+
+      }
+
+    });
+  },
+  insertSummary(data) {
+    console.log(data)
+    Meteor.users.upsert(Meteor.userId(),
+    {$set:{
+        'summary.employee': data
+
+
+      }
+
+    });
+  },
+  insertManSummary(data) {
+    console.log(data)
+    Meteor.users.upsert(Meteor.userId(),
+    {$set:{
+        'summary.manager': data
+
+
+      }
+
     });
   }
 });

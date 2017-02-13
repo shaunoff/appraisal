@@ -24,7 +24,8 @@ class App extends Component {
                   <div style={{flex: '1', display: 'flex', flexDirection: 'column'}}>
                     <Header />
                     <div style={{flex: '1', height: 'calc(100vh - 60px)', background: '#F8FAFB'}}>
-                      {this.props.children}
+                      {React.cloneElement(this.props.children, {users: this.props.users})}
+
                     </div>
                   </div>
                 </div>
@@ -36,8 +37,9 @@ class App extends Component {
 
 export default createContainer(({params}) => {
     let currentUserSub =  Meteor.subscribe('currentUser');
+
     return {
       userReady: currentUserSub.ready(),
-
+      users: Meteor.users.find({}).fetch(),
     }
   }, App);
