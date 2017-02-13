@@ -1,39 +1,35 @@
 import React from 'react';
 import {progressStyles} from "./progressStyles.js"
 
-import { Circle } from 'rc-progress';
+import Circle from '../progressSidebar/Circle.js';
+import SubHeader from '../progressSidebar/SubHeader.js';
+import Radium from 'radium'
 
+@Radium
 export default class Progress extends React.Component {
   render(){
-    const {progressContainer,headerActive,headerInactive,headerComplete,circleActive,circleComplete,numberActive,numberInactive,circleInactive,textComplete,textActive,textInactive,lineComplete,line1Active,line2Active,line1Inactive,line2Inactive} = progressStyles
+    const {progressContainer,headerActive,header,headerComplete,circleActive,circleComplete,numberActive,numberInactive,circleInactive,textComplete,textActive,textInactive,lineComplete,line1Active,line2Active,line1Inactive,line2Inactive} = progressStyles
     const {stage} = this.props
     return(
       <div style={progressContainer}>
         <div style={{display: 'flex', flexDirection: 'column',alignItems: 'center',justifyContent: 'left',alignItems: 'left'}}>
           <div style={{display: "flex", flexDirection: 'column',marginLeft: '10px',marginTop: '10px',marginBottom: "50px"}}>
             <div style={{display: 'flex',flex: '1',alignItems:'center'}}>
-              <div style={headerComplete}>Self Assessment</div>
+              <div style={[header, stage > 1 ? headerComplete: headerActive]}>Self Assessment</div>
                 </div>
                 <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
-                  <div style={stage > 1 ? circleComplete : circleActive}>
-                    <img style={{width: '12px'}} src="/icons/checked.svg"/>
-                    <div style={stage == 1 ? line1Inactive : stage == 2 ? line1Active : lineComplete}></div>
-                  </div>
-                  <div style={stage > 1 ? textComplete : textActive}>Competencies</div>
+                <Circle stage={stage == 1 ? 'active' : 'complete'} number="1"/>
+                <SubHeader stage={stage == 1 ? 'active' : 'complete'} text="Competencies"/>
+
 
                 </div>
                 <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
-                  <div style={stage == 1 ? circleInactive : stage == 2 ? circleActive : circleComplete}>
-                    <img style={{width: '12px'}} src="/icons/checked.svg"/>
-                    <div style={stage <= 2 ? line2Inactive : stage == 3 ? line2Active : lineComplete}></div>
-                  </div>
-                  <div style={stage == 1 ? textInactive : stage == 2 ? textActive : textComplete}>Questions</div>
+                  <Circle stage={stage == 2 ? 'active' : stage > 2 ? "complete" : ""} number="2"/>
+                  <SubHeader stage={stage == 2 ? 'active' : stage > 2 ? "complete" : ""} text="Questions"/>
                 </div>
                 <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
-                  <div style={stage <=2  ? circleInactive : stage == 3 ? circleActive : circleComplete}>
-                    <img style={{width: '12px'}} src="/icons/checked.svg"/>
-                  </div>
-                  <div style={stage <= 2 ? textInactive : stage == 3 ? textActive : textComplete}>Summary</div>
+                  <Circle stage={stage > 3 ? 'complete' : stage == 3 ? "active" : ""} number="3"/>
+                  <SubHeader stage={stage > 3 ? 'complete' : stage == 3 ? "active" : ""} text="Summary"/>
                 </div>
 
               </div>
@@ -67,7 +63,7 @@ export default class Progress extends React.Component {
               <div style={{display: "flex", flexDirection: 'column',marginLeft: '10px',marginTop: '10px'}}>
                 <div style={{display: 'flex',flex: '1',alignItems:'center'}}>
 
-                  <div style={headerInactive}>Approval</div>
+                  <div style={header}>Approval</div>
                 </div>
                 <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
                   <div style={circleInactive}>

@@ -28,13 +28,13 @@ render() {
 
           <div style={{marginLeft:"10px", fontWeight: "500"}}><Link  style={{ fontSize: "16px",textDecoration: 'none',color: "#585858 " }} to='/'>Home</Link></div>
          </div>
-         <div style={path === '/test' ? active : inactive}>
+         <div style={path === '/appraisal' ? active : inactive}>
 
             <img style={{marginLeft: "15px", width: '25px'}} src="/icons/c_appraisal.svg"/>
 
-          <div style={{marginLeft:"10px", fontWeight: "500"}}><Link style={{ fontSize: "16px",textDecoration: 'none',color: "#007681" }} to='/test'>Appraisal</Link></div>
+          <div style={{marginLeft:"10px", fontWeight: "500"}}><Link style={{ fontSize: "16px",textDecoration: 'none',color: "#007681" }} to='/appraisal'>Appraisal</Link></div>
          </div>
-         <div style={path === '/new' ? active : inactive}>
+         <div style={path === '/test' ? active : inactive}>
 
             <img style={{marginLeft: "15px", width: '25px'}} src="/icons/target.svg"/>
 

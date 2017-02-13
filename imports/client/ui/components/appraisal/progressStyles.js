@@ -1,30 +1,27 @@
 export let progressStyles = {
   progressContainer: {
-    width: '220px',
+    maxWidth: '220px',
+    flex:'1',
     minHeight: '720px',
-    margin: '15px',
+    margin: '15px 0px 15px 15px',
     display: 'flex',
     flexDirection: 'column',
     border: "2px solid #ccc",
     borderRadius: '8px',
-    marginRight: '0px',
     background: "white",
   },
-  headerActive: {
-    fontSize: '18px',
-    fontWeight: '700',
-    color: '#6bada7'
-  },
-  headerComplete: {
-    fontSize: '18px',
-    fontWeight: '700',
-    color: '#007681'
-  },
-  headerInactive: {
+  header: {
     fontSize: '18px',
     fontWeight: '700',
     color: '#ccc'
   },
+  headerComplete: {
+    color: '#007681'
+  },
+  headerActive: {
+    color: '#6bada7'
+  },
+
   textComplete: {
     fontSize: '14px',
     fontWeight: '500',

@@ -5,6 +5,8 @@ import Formsy from 'formsy-react';
 
 import Rating from './Rating.js'
 import Comment from './Comment.js'
+import Button from '../button/Button.js'
+
 
 export default class Questions extends React.Component {
 constructor(){
@@ -33,6 +35,10 @@ handleSubmit(data){
         this.props.advance()
       }
     });
+}
+previous(){
+  
+  this.props.previous()
 }
 render(){
     const {questions = {}} = Meteor.user()
@@ -74,7 +80,12 @@ render(){
       <Comment value={questions.q4comment} rows={4} name="q4comment"/>
 
     </div>
-    <button  type="submit" disabled={!this.state.canSubmit}>Submit</button>
+    <div style={{display: 'flex',margin: '10px'}}>
+    <Button type="button" click={this.previous.bind(this)}>Previous</Button>
+    <div style={{flex: '1'}}></div>
+    <Button type="submit" disabled={!this.state.canSubmit}>Submit</Button>
+    </div>
+
     </Formsy.Form>
 
 

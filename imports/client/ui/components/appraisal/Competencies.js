@@ -5,6 +5,7 @@ import Formsy from 'formsy-react';
 
 import Rating from './Rating.js'
 import Comment from './Comment.js'
+import Button from '../button/Button.js'
 
 export default class Competencies extends React.Component {
 constructor(){
@@ -76,7 +77,10 @@ render(){
       <Rating value={competencies.timeRating} name="timeRating" validations="isExisty" required/>
       <Comment value={competencies.timeComment} rows={4} name="timeComment" validations="isExisty" required/>
     </div>
-    <button  type="submit" disabled={!this.state.canSubmit}>Submit</button>
+    <div style={{display: 'flex',margin: '10px'}}>
+    <div style={{flex: '1'}}></div>
+    <Button type="submit" disabled={!this.state.canSubmit}>Submit</Button>
+    </div>
     </Formsy.Form>
 
 
