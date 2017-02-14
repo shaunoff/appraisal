@@ -19,10 +19,25 @@ export default class Test extends React.Component {
 constructor(){
   super()
   this.state={
-    stage: 1
+    stage: 4
   }
 }
-
+stageNumber(managerAccess,user) {
+  switch (this.state.stage) {
+                   case 1:
+                    return <Competencies advance={this.advance.bind(this)}/>;
+                   case 2:
+                    return <Questions previous={this.previous.bind(this)} advance={this.advance.bind(this)}/>;
+                   case 3:
+                    return <Summary previous={this.previous.bind(this)} advance={this.advance.bind(this)}/>;
+                   case 4:
+                    return <ManagerCompetencies managerAccess={managerAccess} user={user} advance={this.advance.bind(this)}/>;
+                   case 5:
+                    return <ManagerQuestions managerAccess={managerAccess} user={user} previous={this.previous.bind(this)} advance={this.advance.bind(this)}/>;
+                   case 6:
+                    return <ManagerSummary user={user} previous={this.previous.bind(this)}/>;
+                  }
+}
 handleChange(data){
   console.log(data)
 }
@@ -37,7 +52,7 @@ previous(){
 render(){
   const paramId = this.props.params._id
   const user = Meteor.users.findOne({_id: paramId})
-  const managerAccess = user._id == Meteor.userId() ? false : true
+  const managerAccess = user._id == Meteor.userId() ? true : false
 
   return(
 <div>
@@ -48,7 +63,8 @@ render(){
 {this.state.stage == 1 ? <Competencies advance={this.advance.bind(this)}/> : this.state.stage ==  2 ? <Questions previous={this.previous.bind(this)} advance={this.advance.bind(this)}/> : <Summary/>}
 </Test2>*/}
 <Test2 element={this.state.stage}>
-{this.state.stage == 1 ? <ManagerCompetencies managerAccess={managerAccess} user={user} advance={this.advance.bind(this)}/> : this.state.stage ==  2 ? <ManagerQuestions managerAccess={managerAccess} user={user} previous={this.previous.bind(this)} advance={this.advance.bind(this)}/> : <ManagerSummary user={user} previous={this.previous.bind(this)}/>}
+{this.stageNumber(managerAccess,user)}
+{/*{this.state.stage == 1 ? <ManagerCompetencies managerAccess={managerAccess} user={user} advance={this.advance.bind(this)}/> : this.state.stage ==  2 ? <ManagerQuestions managerAccess={managerAccess} user={user} previous={this.previous.bind(this)} advance={this.advance.bind(this)}/> : <ManagerSummary user={user} previous={this.previous.bind(this)}/>}*/}
 </Test2>
 </div>
 

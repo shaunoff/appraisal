@@ -28,7 +28,6 @@ disableButton() {
     }
 handleSubmit(data){
   console.log(data)
-  this.props.advance()
   Meteor.call('insertManQuestions', data, (err, res) => {
       if(err) {
         console.log('error')
