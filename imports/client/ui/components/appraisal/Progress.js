@@ -1,7 +1,7 @@
 import React from 'react';
 import {progressStyles} from "./progressStyles.js"
 
-import Circle from '../progressSidebar/Circle.js';
+import ProgCircle from '../progressSidebar/ProgCircle.js';
 import SubHeader from '../progressSidebar/SubHeader.js';
 import Radium from 'radium'
 
@@ -15,78 +15,66 @@ export default class Progress extends React.Component {
         <div style={{display: 'flex', flexDirection: 'column',alignItems: 'center',justifyContent: 'left',alignItems: 'left'}}>
           <div style={{display: "flex", flexDirection: 'column',marginLeft: '10px',marginTop: '10px',marginBottom: "50px"}}>
             <div style={{display: 'flex',flex: '1',alignItems:'center'}}>
-              <div style={[header, stage > 1 ? headerComplete: headerActive]}>Self Assessment</div>
+              <div style={[header, stage > 3 ? headerComplete: headerActive]}>Self Assessment</div>
                 </div>
                 <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
-                <Circle stage={stage == 1 ? 'active' : 'complete'} number="1"/>
-                <SubHeader stage={stage == 1 ? 'active' : 'complete'} text="Competencies"/>
+                <ProgCircle stage={stage > 1 ? 'complete' : 'active'} number="1"/>
+                <SubHeader stage={stage > 1 ? 'complete' : 'active'} text="Competencies"/>
 
 
                 </div>
                 <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
-                  <Circle stage={stage == 2 ? 'active' : stage > 2 ? "complete" : ""} number="2"/>
-                  <SubHeader stage={stage == 2 ? 'active' : stage > 2 ? "complete" : ""} text="Questions"/>
+                  <ProgCircle stage={stage > 2 ? 'complete' : stage == 2 ? "active" : ""} number="2"/>
+                  <SubHeader stage={stage > 2 ? 'complete' : stage == 2 ? "active" : ""} text="Questions"/>
                 </div>
                 <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
-                  <Circle stage={stage > 3 ? 'complete' : stage == 3 ? "active" : ""} number="3"/>
+                  <ProgCircle stage={stage > 3 ? 'complete' : stage == 3 ? "active" : ""} number="3"/>
                   <SubHeader stage={stage > 3 ? 'complete' : stage == 3 ? "active" : ""} text="Summary"/>
                 </div>
 
               </div>
               <div style={{display: "flex", flexDirection: 'column',marginLeft: '10px',marginTop: '10px',marginBottom: "50px"}}>
                 <div style={{display: 'flex',flex: '1',alignItems:'center'}}>
+                  <div style={[header, stage > 6 ? headerComplete: stage > 3 ? headerActive: '']}>Manager Assessment</div>
+                    </div>
+                    <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
+                    <ProgCircle stage={stage > 4 ? 'complete' : stage == 4 ? "active" :''} number="1"/>
+                    <SubHeader stage={stage > 4 ? 'complete' : stage == 4 ? "active" :''} text="Competencies"/>
 
-                  <div style={headerActive}>Manager Assessment</div>
-                </div>
-                <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
-                  <div style={circleActive}>
-                    <div style={numberActive}>1</div>
-                    <div style={line1Active}></div>
-                  </div>
-                  <div style={textActive}>Competencies</div>
-                </div>
-                <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
-                  <div style={{display: 'flex',alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px',background:'white',borderRadius: '40px', border: '2px solid #6bada7',zIndex: '3', marginRight: '8px'}}>
-                    <div style={numberActive}>2</div>
-                    <div style={line2Active}></div>
-                  </div>
-                  <div style={textActive}>Questions</div>
-                </div>
-                <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
-                  <div style={{display: 'flex',alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px',background:'white',borderRadius: '40px', border: '2px solid #6bada7',zIndex: '3', marginRight: '8px'}}>
-                    <div style={numberActive}>3</div>
-                  </div>
-                  <div style={textActive}>Summary</div>
-                </div>
 
-              </div>
-              <div style={{display: "flex", flexDirection: 'column',marginLeft: '10px',marginTop: '10px'}}>
-                <div style={{display: 'flex',flex: '1',alignItems:'center'}}>
+                    </div>
+                    <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
+                      <ProgCircle stage={stage > 5 ? 'complete' : stage == 5 ? "active" : ""} number="2"/>
+                      <SubHeader stage={stage > 5 ? 'complete' : stage == 5 ? "active" : ""} text="Questions"/>
+                    </div>
+                    <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
+                      <ProgCircle stage={stage > 6 ? 'complete' : stage == 6 ? "active" : ""} number="3"/>
+                      <SubHeader stage={stage > 6 ? 'complete' : stage == 6 ? "active" : ""} text="Summary"/>
+                    </div>
 
-                  <div style={header}>Approval</div>
-                </div>
-                <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
-                  <div style={circleInactive}>
-                    <div style={numberInactive}>1</div>
-                    <div style={line1Inactive}></div>
                   </div>
-                  <div style={textInactive}>Employee Approval</div>
-                </div>
-                <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
-                  <div style={circleInactive}>
-                    <div style={numberInactive}>2</div>
-                    <div style={line2Inactive}></div>
-                  </div>
-                  <div style={textInactive}>Manager Approval</div>
-                </div>
-                <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
-                  <div style={circleInactive}>
-                    <div style={numberInactive}>3</div>
-                  </div>
-                  <div style={textInactive}>Final Approval</div>
-                </div>
+                  <div style={{display: "flex", flexDirection: 'column',marginLeft: '10px',marginTop: '10px',marginBottom: "50px"}}>
+                    <div style={{display: 'flex',flex: '1',alignItems:'center'}}>
+                      <div style={[header, stage > 9 ? headerComplete: stage > 6 ? headerActive: '']}>Approval</div>
+                        </div>
+                        <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
+                        <ProgCircle stage={stage > 7 ? 'complete' : stage == 7 ? "active" :''} number="1"/>
+                        <SubHeader stage={stage > 7 ? 'complete' : stage == 7 ? "active" :''} text="Competencies"/>
 
-              </div>
+
+                        </div>
+                        <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
+                          <ProgCircle stage={stage > 8 ? 'complete' : stage == 8 ? "active" : ""} number="2"/>
+                          <SubHeader stage={stage > 8 ? 'complete' : stage == 8 ? "active" : ""} text="Questions"/>
+                        </div>
+                        <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
+                          <ProgCircle stage={stage > 9 ? 'complete' : stage == 9 ? "active" : ""} number="3"/>
+                          <SubHeader stage={stage > 9 ? 'complete' : stage == 9 ? "active" : ""} text="Summary"/>
+                        </div>
+
+                      </div>
+
+
 
 
             </div>

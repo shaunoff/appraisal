@@ -1,5 +1,6 @@
 import React from 'react';
 import {Doughnut} from 'react-chartjs-2';
+import HomeProgress from '../components/appraisal/HomeProgress.js'
 import { Line, Circle } from 'rc-progress';
 const data = {
 	labels: [
@@ -37,10 +38,10 @@ const New = () =>
 
           <div style={{display: 'flex'}}>
 
-            <div style={{flex: "1",display: 'flex',flexDirection: 'column', justifyContent:'center'}}>
+            <div style={{flex: "2",display: 'flex',flexDirection: 'column', justifyContent:'center'}}>
 
-
-                <div style={{padding: '10px',display: 'flex', alignItems: 'center',  alignItems: 'center', margin: '10px',border: '2px solid #ccc',borderRadius: '8px', height: '80px'}}>
+							<HomeProgress/>
+                {/*<div style={{padding: '10px',display: 'flex', alignItems: 'center',  alignItems: 'center', margin: '10px',border: '2px solid #ccc',borderRadius: '8px', height: '80px'}}>
                   <div style={{display: 'flex', flexDirection: 'column',flex:'1', alignItems: 'center',justifyContent: 'center',}}>
                     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '40px', height: '40px',background:'white',borderRadius: '40px', border: '2px solid #007681',marginRight: '8px',zIndex: '3'}}>
                       <img style={{width: '15px'}} src="/icons/checked.svg"/>
@@ -59,16 +60,7 @@ const New = () =>
 
                     </div>
                   </div>
-                  <div style={{display: 'flex', flexDirection: 'column',flex:'1', alignItems: 'center',justifyContent: 'center',}}>
-                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center',width: '40px', height: '40px',borderRadius: '40px', border: '2px solid #6bada7', background: "white",marginRight: '8px',zIndex: '3'}}>
-                      <div style={{color: "#6bada7",fontSize: '20px',fontWeight: '700'}}>2</div>
-                    </div>
-                    <div style={{fontSize: '12px',fontWeight: '700',color: '#6bada7'}}>Feedback</div>
-                    <div style={{fontSize: '12px', flex: '1',color: '#007681'}}>22nd January</div>
-                    <div style={{flex: '1',height: '2px', width: '100%', background:'#6bada7',position: 'relative', top: '-50px',zIndex: '2'}}>
 
-                    </div>
-                  </div>
                   <div style={{display: 'flex', flexDirection: 'column',flex:'1', alignItems: 'center',justifyContent: 'center',}}>
                     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center',width: '40px', height: '40px',borderRadius: '40px', border: '2px solid #ccc', background: "white",marginRight: '8px',zIndex: '3'}}>
                       <div style={{color: "#ccc"}}>3</div>
@@ -78,7 +70,7 @@ const New = () =>
                     <div style={{flex: '1',height: '2px', width: '50%', background:'#ccc',position: 'relative', top: '-50px',marginRight: '50%',zIndex: '2'}}></div>
                   </div>
 
-              </div>
+              </div>*/}
 
             </div>
             <div style={{maxWidth: '30%', display: 'flex', flexDirection: 'column', alignItems: 'center',justifyContent: 'center',flex: '1', marginBottom: '15px'}}>

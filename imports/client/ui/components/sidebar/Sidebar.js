@@ -32,7 +32,7 @@ render() {
 
             <img style={{marginLeft: "15px", width: '25px'}} src="/icons/c_appraisal.svg"/>
 
-          <div style={{marginLeft:"10px", fontWeight: "500"}}><Link style={{ fontSize: "16px",textDecoration: 'none',color: "#007681" }} to='/appraisal'>Appraisal</Link></div>
+          <div style={{marginLeft:"10px", fontWeight: "500"}}><Link style={{ fontSize: "16px",textDecoration: 'none',color: "#007681" }} to={`/appraisal/${Meteor.userId()}`}>Appraisal</Link></div>
          </div>
          <div style={path === '/test' ? active : inactive}>
 

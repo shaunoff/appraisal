@@ -2,7 +2,7 @@ import React from 'react';
 import Radium from 'radium'
 
 @Radium
-export default class Circle extends React.Component {
+export default class ProgCircle extends React.Component {
   render(){
     const popAnimation = Radium.keyframes({
       '50%': { transform: 'scale(1.2) ' }
@@ -31,7 +31,7 @@ export default class Circle extends React.Component {
 
       active: {
         border: '2px solid #6bada7',
-        
+
       },
       complete: {
         border: '2px solid #007681',
@@ -42,7 +42,7 @@ export default class Circle extends React.Component {
     }
     const {stage} =this.props
     return(
-      <div style={[styles.normal, stage == "active" ? styles.active : stage == "complete" ? styles.complete : ""]}>
+      <div style={[styles.normal, this.props.style, stage == "active" ? styles.active : stage == "complete" ? styles.complete : ""]}>
         {stage == "complete" ?
           <img style={{width: '12px'}} src="/icons/checked2.svg"/>
           :

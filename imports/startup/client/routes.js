@@ -29,9 +29,9 @@ Meteor.startup(() => {
   render(
     <Router history={browserHistory}>
       <Route path="/" component={App} onEnter={requireAuth}>
-        <IndexRoute component={Home} />
+        <IndexRoute component={New} />
           <Route path="/appraisal/:_id" component={Appraisal}/>
-          <Route path="/new" component={New}/>
+          <Route path="/new" component={Home}/>
           <Route path="/test" component={Test}/>
 
       </Route>

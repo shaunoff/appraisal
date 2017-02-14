@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+import { browserHistory } from 'react-router';
 import Formsy from 'formsy-react';
 import Button from '../button/Button.js'
 import Rating from './Rating.js'
@@ -24,13 +24,14 @@ disableButton() {
       });
     }
 handleSubmit(data){
+
   Meteor.call('insertSummary', data, (err, res) => {
       if(err) {
         console.log('error')
       }
       if(!err) {
         console.log('Success')
-        this.props.advance()
+        browserHistory.push('/')
       }
     });
 }

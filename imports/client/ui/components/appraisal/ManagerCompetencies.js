@@ -29,7 +29,7 @@ handleSubmit(data){
     });
 }
 handleClick(){
-  console.log('clicked')
+
   this.props.advance()
 }
 enableButton() {

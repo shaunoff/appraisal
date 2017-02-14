@@ -32,7 +32,7 @@ handleSubmit(data){
       }
       if(!err) {
         console.log('Success')
-        
+        browserHistory.push('/');
       }
     });
 }
