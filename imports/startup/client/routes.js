@@ -33,6 +33,7 @@ Meteor.startup(() => {
           <Route path="/appraisal/:_id" component={Appraisal}/>
           <Route path="/new" component={Home}/>
           <Route path="/test" component={Test}/>
+          <Route path="/google" component={Google}/>
 
       </Route>
       {/*<Route path="/" component={MainLayout} onEnter={requireAuth}>

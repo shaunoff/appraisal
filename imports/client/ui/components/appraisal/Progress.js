@@ -35,7 +35,7 @@ export default class Progress extends React.Component {
               </div>
               <div style={{display: "flex", flexDirection: 'column',marginLeft: '10px',marginTop: '10px',marginBottom: "50px"}}>
                 <div style={{display: 'flex',flex: '1',alignItems:'center'}}>
-                  <div style={[header, stage > 6 ? headerComplete: stage > 3 ? headerActive: '']}>Manager Assessment</div>
+                  <div style={[header, stage > 6 ? headerComplete: stage > 3 ? headerActive: '']}>Manager Review</div>
                     </div>
                     <div style={{display: 'flex',flex: '1',marginTop: '10px',alignItems:'center'}}>
                     <ProgCircle stage={stage > 4 ? 'complete' : stage == 4 ? "active" :''} number="1"/>
