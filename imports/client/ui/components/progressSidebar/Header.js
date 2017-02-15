@@ -15,11 +15,12 @@ export default class Header extends React.Component {
         color: '#ccc'
       },
       active: {
-        color: '#6bada7'
-      },
-      complete: {
         color: '#007681',
         fontWeight: '700',
+      },
+      complete: {
+        color: '#6bada7',
+        fontWeight: '500',
         animation: ' 0.6s ease',
         animationName: popAnimation
       },

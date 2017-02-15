@@ -26,15 +26,15 @@ export default class ProgCircle extends React.Component {
         color: '#ccc'
       },
       numberActive: {
-        color: "#6bada7"
+        color: "#007681"
       },
 
       active: {
-        border: '2px solid #6bada7',
+        border: '2px solid #007681',
 
       },
       complete: {
-        border: '2px solid #007681',
+        border: '2px solid #6bada7',
         animation: ' 0.6s ease',
         animationName: popAnimation
 

@@ -14,12 +14,13 @@ export default class SubHeader extends React.Component {
         color: '#ccc'
       },
       active: {
-        color: '#6bada7'
-      },
-      complete: {
         color: '#007681',
         fontWeight: '700',
+      },
+      complete: {
+        color: '#6bada7',
         animation: '0.6s ease',
+        fontSize: '15px',
         animationName: forwardAnimation
       },
     }
