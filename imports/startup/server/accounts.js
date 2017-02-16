@@ -1,6 +1,35 @@
-Accounts.onCreateUser((options, user) => {
+/*Accounts.onCreateUser((options, user) => {
   if (Meteor.settings.admins.indexOf(options.email) > -1 ) {
     user.roles = ['admin'];
   }
   return user;
+});*/
+
+Accounts.onCreateUser(function (options, user) {
+
+    if (user.services.google) {
+        console.log("services exist")
+
+
+        var email = user.services.google.email;
+
+        var existingUser = Meteor.users.findOne({email: email});
+        if (!existingUser) {
+          return user
+        }
+
+        existingUser['services'] = {}
+        console.log(existingUser)
+        existingUser.services['google'] = user.services.google;
+
+        Meteor.users.remove({_id: existingUser._id}); // remove existing record
+
+        return existingUser;                  // record is re-inserted
+      }
+      return user
+});
+
+Accounts.validateLoginAttempt(function() {
+   console.log('loggedIn')
+   return true
 });
