@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {browserHistory} from 'react-router';
 import {createContainer} from 'meteor/react-meteor-data'
 
-export default class Google extends React.Component {
+class Google extends React.Component {
   handleClick(){
     Meteor.call('directory',(err, res) => {
         if(err) {
@@ -10,13 +10,30 @@ export default class Google extends React.Component {
         }
         if(!err) {
           console.log('success', res)
-
+          googleQuery.set(res)
         }
       });
   }
   render() {
+    console.log(this.props.google)
     return (
-      <div onClick={this.handleClick.bind(this)}>Click Me</div>
+      <div>
+        <div onClick={this.handleClick.bind(this)}>Click Me</div>
+        {this.props.google.data && this.props.google.data.users.map((field,index)=>{
+          return <div key={index}>{field.name.fullName}</div>
+        })}
+      </div>
     )
   }
 }
+
+const googleQuery = new ReactiveVar([]);
+
+
+export  default createContainer(()=>{
+
+  //let userSub = Meteor.subscribe("currentUser");
+  return {
+    google: googleQuery.get()
+  }
+}, Google);
