@@ -15,10 +15,20 @@ Accounts.onCreateUser(function (options, user) {
 
         var existingUser = Meteor.users.findOne({email: email});
         if (!existingUser) {
+          user['profile'] = {
+            email: user.services.google.email,
+            firstName: user.services.google.given_name,
+            lastName: user.services.google.family_name
+           }
+          user['roles'] = ['employee']
+          user['stage'] = 1
           return user
         }
 
         existingUser['services'] = {}
+
+
+
         console.log(existingUser)
         existingUser.services['google'] = user.services.google;
 

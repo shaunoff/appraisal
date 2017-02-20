@@ -18,7 +18,7 @@ import Test2 from './Test2.js'
 export default class Test extends React.Component {
 constructor(props){
   super(props)
-  const {stage} = this.props.users[0]
+  const {stage} = this.props.user[0]
   this.state={
     stage: stage
   }
@@ -58,7 +58,7 @@ render(){
   return(
 <div>
 <div style={{display: 'flex',flexDirection: 'row'}}>
-<Progress stage={this.props.users[0].stage}/>
+<Progress stage={this.props.user[0].stage}/>
 
 {/*<Test2 element={this.state.stage}>
 {this.state.stage == 1 ? <Competencies advance={this.advance.bind(this)}/> : this.state.stage ==  2 ? <Questions previous={this.previous.bind(this)} advance={this.advance.bind(this)}/> : <Summary/>}

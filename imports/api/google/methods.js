@@ -41,9 +41,18 @@ Meteor.methods({
       const users = result.data.users
 
       users.map((user,index)=>{
-        exists = Meteor.users.findOne({email: user.primaryEmail});
+        const exists = Meteor.users.findOne({email: user.primaryEmail});
         if ( !exists ) {
-        Meteor.users.insert({email:  user.primaryEmail, roles: "Employee"})
+        Meteor.users.insert({
+          profile: {
+            email:  user.primaryEmail,
+            firstName: user.name.givenName,
+            lastName: user.name.familyName,
+            startDate: user.creationTime
+          },
+          roles: ["Employee"],
+          stage: 1
+        })
         console.log(`${user.name.fullName} doesn't exist!`)
         }
         if ( exists ) {

@@ -7,7 +7,7 @@ import { Line, Circle } from 'rc-progress';
 const warning = "#fa7606"
 const manager = "#6bada7"
 const primary = "#007681"
-const New = ({users}) => {
+const New = ({user}) => {
 
 
 	return (
@@ -22,12 +22,12 @@ const New = ({users}) => {
 
             <div style={{flex: "3",display: 'flex',flexDirection: 'column', justifyContent:'center',marginRight: '20px'}}>
 
-							<HomeProgress stage={users[0].stage}/>
+							<HomeProgress stage={user[0].stage}/>
 
 
             </div>
 						<div>
-							<HomePie stage={users[0].stage}/>
+							<HomePie stage={user[0].stage}/>
 						</div>
 
 

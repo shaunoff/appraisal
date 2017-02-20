@@ -14,6 +14,7 @@ import Appraisal from '../../client/ui/pages/Appraisal.js';
 import Test from '../../client/ui/pages/Test.js';
 import New from '../../client/ui/pages/New';
 import Google from '../../client/ui/pages/Google';
+import Users from '../../client/ui/pages/Users';
 
 const requireAuth = (nextState,replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()){
@@ -34,6 +35,7 @@ Meteor.startup(() => {
           <Route path="/new" component={Home}/>
           <Route path="/test" component={Test}/>
           <Route path="/google" component={Google}/>
+          <Route path="/users" component={Users}/>
 
       </Route>
       {/*<Route path="/" component={MainLayout} onEnter={requireAuth}>

@@ -11,12 +11,13 @@ import Sidebar from '../components/sidebar/Sidebar.js'
 const handleLogout = () => Meteor.logout(() => browserHistory.push('/login'));
 
 class App extends Component {
+
   render() {
 
-    if (!this.props.userReady) {
+    if (!this.props.subsReady) {
         return <div>Loading</div>;
     }
-    if (this.props.userReady) {
+    if (this.props.subsReady) {
       const path = this.props.location.pathname
       return  <StyleRoot>
                 <div style={{display: 'flex', height: '100%',width: "calc(100% - 2px)"}}>
@@ -24,7 +25,7 @@ class App extends Component {
                   <div style={{flex: '1', display: 'flex', flexDirection: 'column'}}>
                     <Header />
                     <div style={{flex: '1', height: 'calc(100vh - 60px)', background: '#F8FAFB'}}>
-                      {React.cloneElement(this.props.children, {users: this.props.users})}
+                      {React.cloneElement(this.props.children, {user: this.props.currentUser})}
 
                     </div>
                   </div>
@@ -36,10 +37,10 @@ class App extends Component {
 
 
 export default createContainer(({params}) => {
-    let currentUserSub =  Meteor.subscribe('currentUser');
 
+    let currentUserSub =  Meteor.subscribe('currentUser');
     return {
-      userReady: currentUserSub.ready(),
-      users: Meteor.users.find({}).fetch(),
+      subsReady: currentUserSub.ready(),
+      currentUser: Meteor.users.findFromPublication('currentUser').fetch()
     }
   }, App);

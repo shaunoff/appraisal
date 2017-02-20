@@ -21,13 +21,11 @@ class Google extends React.Component {
           console.log('error')
         }
         if(!err) {
-          console.log('success', res)
           googleQuery.set(res)
         }
       });
   }
   render() {
-    console.log(this.props.google)
     if (!this.props.google) {
       return <div>loading...</div>
     }
@@ -49,9 +47,13 @@ const googleQuery = new ReactiveVar();
 
 
 export  default createContainer(()=>{
+  const showAll = Roles.userIsInRole(Meteor.userId(), 'admin')
+  let userSub =  Meteor.subscribe(showAll ? 'allUsers' : 'currentUser');
 
   //let userSub = Meteor.subscribe("currentUser");
   return {
-    google: googleQuery.get()
+    google: googleQuery.get(),
+    ready: userSub.ready(),
+    users: Meteor.users.find({}).fetch(),
   }
 }, Google);
